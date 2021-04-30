@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,31 +38,33 @@
     </ul>
   </div>
 </nav>
+<br>
+<div class="container">
+  <form name="register">
+    <fieldset>
+      <legend>Rekistöröinti</legend>
+      <br>
+      <div class="form-group">
+        <label for="name">Käyttäjänimi</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Syötä Nimi">
+      </div>
+      <div class="form-group">
+        <label for="password">Salasana</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Syötä Salasana">
+      </div>
+      
+      <div class="form-group">
+        <label for="password2">Salasanan tarkistus</label>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Salasana uudelleen">
+      </div>
 
-<form>
-  <fieldset>
-    <legend>Rekistöröinti</legend>
-    
-    <div class="form-group">
-      <label for="name">Käyttäjänimi</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Syötä Nimi">
-    </div>
-    <div class="form-group">
-      <label for="password">Salasana</label>
-      <input type="password" class="form-control" id="password" placeholder="Syötä Salasana">
-    </div>
-    
-    <div class="form-group">
-      <label for="password2">Salasanan tarkistus</label>
-      <input type="password" class="form-control" id="password2" placeholder="Salasana uudelleen">
-    </div>
-
+      </fieldset>
+      <button type="submit" class="btn btn-primary">Rekistöröidy</button>
     </fieldset>
-    <button type="submit" class="btn btn-primary">Rekistöröidy</button>
-  </fieldset>
-</form>
+  </form>
 
-    <script src="js/jquery.min.js"></script>
+  <script src="js/register.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </div>
 </body>
