@@ -10,23 +10,53 @@ function registerNewUser(event) {
     const password = document.getElementById("password").value;
     const password2 = document.getElementById("password2").value;
 
-    if (password.localeCompare(password2) != 0) {
-        alert("Salasanat eivät täsmää!");
-        return;
-    }
+    let nameInput = document.getElementById("username");
+    let pwdInput = document.getElementById("password");
+    let pwd2Input = document.getElementById("password2");
+
 
     if (username.length <= 0) {
-        alert("Käyttäjänimi tarvitaan!");
+        nameInput.classList.remove("is-valid");
+        nameInput.classList.add("is-invalid");
+    }
+
+    else {
+        nameInput.classList.remove("is-invalid");
+        nameInput.classList.add("is-valid");
         return;
     }
 
     if (password.length < 6) {
-        alert("Salasana liian lyhyt!");
+        pwdInput.classList.remove("is-valid");
+        pwdInput.classList.add("is-invalid");
+    }
+
+    else {
+        pwdInput.classList.remove("is-invalid");
+        pwdInput.classList.add("is-valid");
         return;
     }
+
+    if (password.localeCompare(password2) != 0) {
+        pwd2Input.classList.remove("is-valid");
+        pwd2Input.classList.add("is-invalid");
+    }
+
+    else {
+        pwd2Input.classList.add("is-valid");
+        pwd2Input.classList.remove("is-invalid");
+        return
+    }
+
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
-        console.log(ajax.responseText)
+        const data = JSON.parse(this.responseText);
+        if (data.hasOwnProperty("succes")) {
+            window.open("login.php");
+        }
+        else {
+            alert(data.error);
+        }
     }
     ajax.open("POST", "backend/registerNewUser.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
