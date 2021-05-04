@@ -20,7 +20,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#">Koti
         </a>
       </li>
@@ -42,23 +42,28 @@
 <div class="container">
   <form>
     <fieldset>
-    
       <legend>Kirjautuminen</legend>
       <br>
+      <div id="msg" class="alert alert-dismissible alert-danger d-none">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0"></p>
+      </div>
       <div class="form-group">
         <label for="name">Käyttäjänimi</label>
-        <input type="text" class="form-control" id="name" placeholder="Syötä Nimi">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Syötä Nimi">
+        <small></small>
       </div>
       <div class="form-group">
         <label for="password">Salasana</label>
-        <input type="password" class="form-control" id="password" placeholder="Syötä Salasana">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Syötä Salasana">
+        <small></small>
       </div>
-      
       </fieldset>
       <button type="submit" class="btn btn-primary">Kirjaudu</button>
     </fieldset>
   </form>
 
+<script src="js/login.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </div>

@@ -45,9 +45,9 @@
       <legend>Rekistöröinti</legend>
       <br>
       <div id="msg" class="alert alert-dismissible alert-danger d-none">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <p></p>
-</div>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0"></p>
+      </div>
       <div class="form-group">
         <label for="name">Käyttäjänimi</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Syötä Nimi">
@@ -58,19 +58,15 @@
         <input type="password" class="form-control" id="password" name="password" placeholder="Syötä Salasana">
         <small></small>
       </div>
-      
       <div class="form-group">
         <label for="password2">Salasanan tarkistus</label>
         <input type="password" class="form-control" id="password2" name="password2" placeholder="Salasana uudelleen">
         <small></small>
       </div>
-
       </fieldset>
       <button type="submit" class="btn btn-primary">Rekistöröidy</button>
     </fieldset>
   </form>
-
-  
 
   <script src="js/register.js"></script>
 <script src="js/jquery.min.js"></script>
