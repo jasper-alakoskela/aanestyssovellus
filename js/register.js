@@ -16,6 +16,9 @@ function registerNewUser(event) {
 
 
     if (username.length <= 0) {
+        setErrorFor(nameInput, 'Käyttäjänimi tarvitaan!');
+        const small = formControl.querySelector('small');
+        small.innerText = message;
         nameInput.classList.remove("is-valid");
         nameInput.classList.add("is-invalid");
     }
@@ -51,14 +54,39 @@ function registerNewUser(event) {
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
         const data = JSON.parse(this.responseText);
-        if (data.hasOwnProperty("succes")) {
+        if (data.hasOwnProperty("success")) {
             window.open("login.php");
         }
         else {
-            alert(data.error);
+            showMessage("error", data.error);
         }
     }
     ajax.open("POST", "backend/registerNewUser.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send("username=" + username + "&password=" + password);
+}
+
+function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+}
+
+function showMessage(type, msg) {
+
+    let msgBox = document.getElementById("msg");
+
+    if (type == "success") {
+        msgBox.classList.remove("alert-danger");
+        msgBox.classList.add("alert-success");
+    }
+
+    else if (type == "error") {
+        msgBox.classList.remove("alert-success");
+        msgBox.classList.add("alert-danger");
+    }
+
+
+    msgBox.querySelector("p").innerHTML = msg;
+    msgBox.classList.remove("d-none");
 }
