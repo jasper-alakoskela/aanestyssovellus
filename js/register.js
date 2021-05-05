@@ -54,7 +54,7 @@ function registerNewUser(event) {
     }
     ajax.open("POST", "backend/registerNewUser.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send("username=" + username + "&password=" + password);
+    ajax.send(`username=${username}&password=${password}`);
 }
 
 // Virhe viestit

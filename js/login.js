@@ -1,4 +1,6 @@
 
+document.forms["login"].addEventListener("submit", login);
+
 function login(event) {
     event.preventDefault();
 
@@ -26,6 +28,22 @@ function login(event) {
     else {
         setSuccessFor(pwdInput);
     }
+
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function () {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+        if (data.hasOwnProperty("success")) {
+            showMessage("success", data.success);
+            return;
+        } else {
+            showMessage("error", "Kirjautuminen epäonnistui");
+        }
+    }
+
+    ajax.open("POST", "backend/login-user.php", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send(`username=${username}&password=${password}`);
 
 }
 
