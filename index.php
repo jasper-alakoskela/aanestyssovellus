@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,17 +38,23 @@
 </nav>
 
 <div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+    <h2 class="display-3">Tervetuloa</h2>
+    <?php if (isset($_SESSION["logged-in"])) { ?>
+    <h3>kissa<?php echo $_SESSION["username"]; ?></h3>
+    <?php } ?>
+  </div>
+
+<div class="container">
+      <div id="msg" class="alert alert-dismissible alert-danger d-none">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0"></p>
+      </div>
+
 </div>
 
+
+<script src="js/functions.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

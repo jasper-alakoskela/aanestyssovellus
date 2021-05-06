@@ -68,7 +68,8 @@
     </fieldset>
   </form>
 
-  <script src="js/register.js"></script>
+<script src="js/register.js"></script>
+<script src="js/functions.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </div>

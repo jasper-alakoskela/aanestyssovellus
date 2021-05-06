@@ -34,7 +34,7 @@ function login(event) {
         const data = JSON.parse(this.responseText);
         console.log(data);
         if (data.hasOwnProperty("success")) {
-            showMessage("success", data.success);
+            window.location.href = "index.php?type=success&msg=Kirjautuminen onnistui";
             return;
         } else {
             showMessage("error", "Kirjautuminen epäonnistui");
@@ -47,34 +47,3 @@ function login(event) {
 
 }
 
-// Virhe viestit
-
-function setErrorFor(input, message) {
-    const div = input.parentElement;
-    const small = div.querySelector('small');
-    input.className = 'form-control is-invalid';
-    small.innerText = message;
-}
-
-function setSuccessFor(input) {
-    input.className = 'form-control is-valid';
-}
-
-// Viesti laatikko funktio
-
-function showMessage(type, msg) {
-
-    let msgBox = document.getElementById("msg");
-
-    if (type == "success") {
-        msgBox.classList.remove("alert-danger");
-        msgBox.classList.add("alert-success");
-    }
-
-    else if (type == "error") {
-        msgBox.classList.remove("alert-success");
-        msgBox.classList.add("alert-danger");
-    }
-    msgBox.querySelector("p").innerHTML = msg;
-    msgBox.classList.remove("d-none");
-}

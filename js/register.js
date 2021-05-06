@@ -56,35 +56,3 @@ function registerNewUser(event) {
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send(`username=${username}&password=${password}`);
 }
-
-// Virhe viestit
-
-function setErrorFor(input, message) {
-    const div = input.parentElement;
-    const small = div.querySelector('small');
-    input.className = 'form-control is-invalid';
-    small.innerText = message;
-}
-
-function setSuccessFor(input) {
-    input.className = 'form-control is-valid';
-}
-
-// Viesti laatikko funktio
-
-function showMessage(type, msg) {
-
-    let msgBox = document.getElementById("msg");
-
-    if (type == "success") {
-        msgBox.classList.remove("alert-danger");
-        msgBox.classList.add("alert-success");
-    }
-
-    else if (type == "error") {
-        msgBox.classList.remove("alert-success");
-        msgBox.classList.add("alert-danger");
-    }
-    msgBox.querySelector("p").innerHTML = msg;
-    msgBox.classList.remove("d-none");
-}
