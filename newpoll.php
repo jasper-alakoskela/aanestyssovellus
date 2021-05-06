@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-    
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="index.php">Äänestyssovellus</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +16,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="index.php">Koti</a>
       </li>
       <li class="nav-item">
@@ -33,27 +31,57 @@
         <a class="nav-link" href="login.php">Kirjaudu</a>
       </li>
       <?php endif;?>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="newpoll.php">Luo äänestys</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div class="jumbotron">
-    <h2 class="display-3">Tervetuloa</h2>
-    <?php if (isset($_SESSION["logged_in"])){ ?>
-    <h3><?php echo $_SESSION["username"]; ?></h3>
-    <?php } ?>
-</div>
-
 <div class="container">
+  <form name="newpoll">
+    <fieldset>
+      <legend>Luo taulu</legend>
+      <br>
       <div id="msg" class="alert alert-dismissible alert-danger d-none">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p class="mb-0"></p>
       </div>
-</div>
-
+      <div class="form-group">
+        <label for="topic">Aihe</label>
+        <input type="text" class="form-control" id="topic" name="topic" placeholder="Kirjoita Aihe">
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="startvote">Valitse Aloitus Aika</label>
+        <input type="datetime-local" class="form-control" id="startvote" name="startvote">
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="endvote">Valitse Lopetus Aika</label>
+        <input type="datetime-local" class="form-control" id="endvote" name="endvote">
+        <small></small>
+      </div>
+      <h3>Vaihtoehdot</h3>
+      <br>
+      <button class="btn btn-primary" id="addoption">Lisää Vaihtoehto</button>
+      <br><br>
+      <div class="form-group">
+        <label for="option1">Vaihtoehto1</label>
+        <input type="text" class="form-control" id="option1" name="option1" placeholder="Vaihtoehto1">
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="option2">Vaihtoehto2</label>
+        <input type="text" class="form-control" id="option2" name="option2" placeholder="Vaihtoehto2">
+        <small></small>
+      </div>
+      <!-- Tähän lisä vaihtoehdot -->
+      <button type="submit" class="btn btn-primary">Rekistöröidy</button>
+    </fieldset>
+  </form>
+  <div>
+<script src="js/newPoll.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>

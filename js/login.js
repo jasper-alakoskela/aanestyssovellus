@@ -21,7 +21,7 @@ function login(event) {
     }
 
     if (password.length < 6) {
-        setErrorFor(pwdInput, 'Salasana liian lyhyt!')
+        setErrorFor(pwdInput, 'Salasana liian lyhyt!');
         return false;
     }
 
