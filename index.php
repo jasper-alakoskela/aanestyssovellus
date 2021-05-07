@@ -33,9 +33,15 @@
         <a class="nav-link" href="login.php">Kirjaudu</a>
       </li>
       <?php endif;?>
+      <?php if (isset($_SESSION["logged_in"])):?>
       <li class="nav-item">
         <a class="nav-link" href="newpoll.php">Luo äänestys</a>
       </li>
+      <?php else:?>
+        <li class="nav-item ">
+        <a class="nav-link disabled" href="">Luo äänestys</a>
+      </li>
+      <?php endif;?>
     </ul>
   </div>
 </nav>

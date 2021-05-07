@@ -1,3 +1,10 @@
+<?php session_start();
+if (!isset($_SESSION["logged_in"])) {
+header("Location: index.php");
+die;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +38,15 @@
         <a class="nav-link" href="login.php">Kirjaudu</a>
       </li>
       <?php endif;?>
+        <?php if (isset($_SESSION["logged_in"])):?>
       <li class="nav-item active">
         <a class="nav-link" href="newpoll.php">Luo äänestys</a>
       </li>
+      <?php else:?>
+        <li class="nav-item ">
+        <a class="nav-link disabled" href="">Luo äänestys</a>
+      </li>
+      <?php endif;?>
     </ul>
   </div>
 </nav>
@@ -65,6 +78,7 @@
       <h3>Vaihtoehdot</h3>
       <br>
       <button class="btn btn-primary" id="addoption">Lisää Vaihtoehto</button>
+      <button type="button" id="delbtn" class="btn btn-outline-danger">Poista Vaihtoehto</button>
       <br><br>
       <div class="form-group">
         <label for="option1">Vaihtoehto1</label>
@@ -77,8 +91,8 @@
         <small></small>
       </div>
       <!-- Tähän lisä vaihtoehdot -->
-      <button type="submit" class="btn btn-primary">Rekistöröidy</button>
     </fieldset>
+    <button type="submit" class="btn btn-primary">Rekistöröidy</button>
   </form>
   <div>
 <script src="js/newPoll.js"></script>
