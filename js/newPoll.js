@@ -2,6 +2,80 @@ let optionCount = 2;
 
 document.getElementById("addoption").addEventListener("click", newOption);
 document.getElementById("delbtn").addEventListener("click", deleteOption);
+document.forms["newpoll"].addEventListener("submit", createNewPoll);
+
+function createNewPoll(e) {
+    e.preventDefault();
+
+    const topic = document.forms["newpoll"]["topic"].value;
+    const start = document.forms["newpoll"]["start"].value;
+    const end = document.forms["newpoll"]["end"].value;
+
+    const inputTopic = document.forms["newpoll"]["topic"];
+    const inputOption1 = document.getElementById("option1");
+    const inputOption2 = document.getElementById("option2");
+
+
+    const options = [];
+
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(function (input) {
+        if (input.name.indexOf("option") == 0) {
+            options.push(input.value);
+        }
+    })
+
+
+    if (topic.length <= 0) {
+        setErrorFor(inputTopic, 'Aihe tarvitaan!');
+        return false;
+    }
+
+    else {
+        setSuccessFor(inputTopic);
+    }
+    if (options[0].length <= 0) {
+        setErrorFor(inputTopic, 'Ensimmäinen vaihtoehto tarvitaan!');
+        return false;
+    }
+
+    else {
+        setSuccessFor(inputOption1);
+    }
+
+    if (options[1].length <= 0) {
+        setErrorFor(inputTopic, 'Toinen vaihtoehto tarvitaan!');
+        return false;
+    }
+
+    else {
+        setSuccessFor(inputOption2);
+    }
+
+
+    let postData = `topic=${topic}&start=${start}&end=${end}`
+    options.forEach(function (option) {
+        postData += `&option${i++}=${option}`
+    })
+    console.log(postData);
+
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function () {
+        const data = JSON.parse(this.responseText);
+        if (data.hasOwnProperty("success")) {
+            alert("onnistui");
+        }
+        else {
+            showMessage("error", data.error);
+        }
+    }
+    ajax.open("POST", "backend/registerNewUser.php", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send(postData);
+}
+
+
 
 function deleteOption(e) {
 

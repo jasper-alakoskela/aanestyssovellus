@@ -67,12 +67,12 @@ die;
       </div>
       <div class="form-group">
         <label for="startvote">Valitse Aloitus Aika</label>
-        <input type="datetime-local" class="form-control" id="startvote" name="startvote">
+        <input type="datetime-local" class="form-control" id="start" name="start">
         <small></small>
       </div>
       <div class="form-group">
         <label for="endvote">Valitse Lopetus Aika</label>
-        <input type="datetime-local" class="form-control" id="endvote" name="endvote">
+        <input type="datetime-local" class="form-control" id="end" name="end">
         <small></small>
       </div>
       <h3>Vaihtoehdot</h3>
