@@ -58,8 +58,41 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p class="mb-0"></p>
       </div>
+
+      <h2>Äänestykset</h2>
+      <br>
+      <div class="btn-group dropright">
+          <button class="btn btn-secondary btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Nykyiset
+          </button>
+          <div class="dropdown-menu">
+            <ul id="currentVotes">
+            </ul>
+          </div>
+      </div>
+     <br><br>
+      <div class="btn-group dropright">
+          <button class="btn btn-secondary btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tulevat
+          </button>
+          <div class="dropdown-menu">
+            <ul id="futureVotes">
+            </ul>
+          </div>
+      </div>
+      <br><br>
+      <div class="btn-group dropright">
+          <button class="btn btn-secondary btn-danger btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menneet
+          </button>
+          <div class="dropdown-menu">
+            <ul id="oldVotes">
+            </ul>
+          </div>
+      </div>
 </div>
 
+<script src="js/index.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>

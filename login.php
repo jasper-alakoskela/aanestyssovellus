@@ -54,7 +54,10 @@
     <fieldset>
       <legend>Kirjautuminen</legend>
       <br>
-      
+      <div id="msg" class="alert alert-dismissible alert-danger d-none">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0"></p>
+      </div>
       <div class="form-group">
         <label for="name">Käyttäjänimi</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Syötä Nimi">

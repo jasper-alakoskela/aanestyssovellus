@@ -54,7 +54,7 @@ die;
 <div class="container">
   <form name="newpoll">
     <fieldset>
-      <legend>Luo taulu</legend>
+      <legend>Luo Äänestys</legend>
       <br>
       <div id="msg" class="alert alert-dismissible alert-danger d-none">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -92,7 +92,7 @@ die;
       </div>
       <!-- Tähän lisä vaihtoehdot -->
     </fieldset>
-    <button type="submit" class="btn btn-primary">Rekistöröidy</button>
+    <button type="submit" class="btn btn-primary">Luo</button>
   </form>
   <div>
 <script src="js/newPoll.js"></script>

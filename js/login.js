@@ -38,6 +38,8 @@ function login(event) {
             return;
         } else {
             showMessage("error", "Kirjautuminen epäonnistui");
+            setErrorFor(nameInput);
+            setErrorFor(pwdInput);
         }
     }
 

@@ -53,8 +53,8 @@ function createNewPoll(e) {
         setSuccessFor(inputOption2);
     }
 
-
-    let postData = `topic=${topic}&start=${start}&end=${end}`
+    let postData = `topic=${topic}&start=${start}&end=${end}`;
+    let i = 0;
     options.forEach(function (option) {
         postData += `&option${i++}=${option}`
     })
