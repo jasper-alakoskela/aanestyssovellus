@@ -70,7 +70,7 @@ function createNewPoll(e) {
             showMessage("error", data.error);
         }
     }
-    ajax.open("POST", "backend/registerNewUser.php", true);
+    ajax.open("POST", "backend/createNewPoll.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send(postData);
 }
