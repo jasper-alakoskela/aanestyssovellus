@@ -1,6 +1,12 @@
 // Index sivun js
 
+window.addEventListener("load", getPolls);
+
 let data = null;
+document.getElementById("currentVotes").addEventListener("click", openPoll);
+document.getElementById("oldVotes").addEventListener("click", openPoll);
+document.getElementById("futureVotes").addEventListener("click", openPoll);
+
 
 // Ota tietokannasta äänestykset
 
@@ -12,7 +18,7 @@ function getPolls() {
         showPolls();
     }
     ajax.open("GET", "backend/getPolls.php");
-    ajax.send
+    ajax.send();
 }
 
 function showPolls(type = "current") {
@@ -46,6 +52,7 @@ function showPolls(type = "current") {
 
                 const newLi = document.createElement("li");
                 newLi.classList.add("list-group-item");
+                newLi.dataset.voteid = poll.id;
 
                 const liText = document.createTextNode(poll.topic);
                 newLi.appendChild(liText);
@@ -60,11 +67,12 @@ function showPolls(type = "current") {
 
                 const newLi = document.createElement("li");
                 newLi.classList.add("list-group-item");
+                newLi.dataset.voteid = poll.id;
 
                 const liText = document.createTextNode(poll.topic);
                 newLi.appendChild(liText);
 
-                futureVotes.appendChild(newLi);
+                oldVotes.appendChild(newLi);
             }
         }
 
@@ -74,13 +82,19 @@ function showPolls(type = "current") {
 
                 const newLi = document.createElement("li");
                 newLi.classList.add("list-group-item");
+                newLi.dataset.voteid = poll.id;
 
                 const liText = document.createTextNode(poll.topic);
                 newLi.appendChild(liText);
 
-                oldVotes.appendChild(newLi);
+                futureVotes.appendChild(newLi);
             }
         }
 
     });
+}
+
+function openPoll (e) {
+    console.log(e.target.dataset.voteid);
+    window.location.href = "vote.php?id=" + e.target.dataset.voteid;
 }
