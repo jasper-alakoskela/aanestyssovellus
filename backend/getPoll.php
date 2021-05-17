@@ -4,14 +4,14 @@ if (!isset($_GET["id"])) {
     die();
 }
 
-$pollid = $_GET["id"];
+$poll_id = $_GET["id"];
 
 include_once "db-connection.php";
 
 
 try {
-    $stmt = $conn -> prepare("SELECT id, topic, start, end, user_id FROM poll WHERE poll id = :pollid");
-    $stmt->bindParam(":pollid", $pollid);
+    $stmt = $conn -> prepare("SELECT id, topic, start, end, user_id FROM poll WHERE poll id = :poll_id");
+    $stmt->bindParam(":poll_id", $poll_id);
 
     if ($stmt->execute() == false) {
         $data = array (
@@ -21,7 +21,6 @@ try {
 
     else {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         $data = $result;
     }
 }
@@ -34,8 +33,8 @@ catch (PDOException $e) {
 
 // vaihtoehdot tietokannasta
 try {
-    $stmt = $conn -> prepare("SELECT id, name, votes FROM option WHERE poll_id = :pollid");
-    $stmt->bindParam(":pollid", $pollid);
+    $stmt = $conn -> prepare("SELECT id, name, votes FROM option WHERE poll_id = :poll_id");
+    $stmt->bindParam(":poll_id", $poll_id);
 
     if ($stmt->execute() == false) {
         $data = array (

@@ -17,7 +17,6 @@ try {
         //Käyttäjä löytyi
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $data = $result;
-
         }
 }
 

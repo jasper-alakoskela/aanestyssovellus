@@ -64,7 +64,8 @@ function createNewPoll(e) {
     ajax.onload = function () {
         const data = JSON.parse(this.responseText);
         if (data.hasOwnProperty("success")) {
-            alert("onnistui");
+            window.location.href = "index.php?type=success&msg=Luonti onnistui";
+            return;
         }
         else {
             showMessage("error", data.error);

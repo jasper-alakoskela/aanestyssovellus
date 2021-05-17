@@ -3,10 +3,10 @@
 window.addEventListener("load", getPolls);
 
 let data = null;
+
 document.getElementById("currentVotes").addEventListener("click", openPoll);
 document.getElementById("oldVotes").addEventListener("click", openPoll);
 document.getElementById("futureVotes").addEventListener("click", openPoll);
-
 
 // Ota tietokannasta äänestykset
 
@@ -14,14 +14,16 @@ function getPolls() {
     console.log("haetaan dataa")
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
-        const data = JSON.parse(this.responseText);
+        data = JSON.parse(this.responseText);
         showPolls();
     }
     ajax.open("GET", "backend/getPolls.php");
     ajax.send();
 }
 
-function showPolls(type = "current") {
+function showPolls(type) {
+
+    console.log(data);
 
     const currentVotes = document.getElementById("currentVotes");
     currentVotes.innerHTML = "";
@@ -40,15 +42,17 @@ function showPolls(type = "current") {
         let end = false;
 
         if (poll.start != "0000-00-00 00:00:00") {
-            let start = new Date(poll.start);
+            start = new Date(poll.start);
         }
         if (poll.end != "0000-00-00 00:00:00") {
-            let end = new Date(poll.end);
+            end = new Date(poll.end);
         }
+
+
         //Nykyiset äänestykset
         // Oikea alkamis ja loppumis aika.
         if (type == "current") {
-            if ((start == false || start >= now) && (end == false || end >= now)) {
+            if ((start == false || start <= now) && (end == false || end >= now)) {
 
                 const newLi = document.createElement("li");
                 newLi.classList.add("list-group-item");
@@ -78,7 +82,7 @@ function showPolls(type = "current") {
 
         //tulevat äänestykset
         if (type == "future") {
-            if (start < now && start != false) {
+            if (start > now && start != false) {
 
                 const newLi = document.createElement("li");
                 newLi.classList.add("list-group-item");
@@ -94,7 +98,7 @@ function showPolls(type = "current") {
     });
 }
 
-function openPoll (e) {
+function openPoll(e) {
     console.log(e.target.dataset.voteid);
     window.location.href = "vote.php?id=" + e.target.dataset.voteid;
 }

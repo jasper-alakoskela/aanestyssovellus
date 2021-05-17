@@ -8,7 +8,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 
     // Tarkistukset ensin
-if (!isset($_POST["topic"]) or !isset($_POST["option1"]) or !isset($_POST["option2"])) {
+if (!isset($_POST["topic"]) or !isset($_POST["option1"])) {
     $data = array(
         "error" => "Dataa ei saatavilla!"
     );
@@ -40,11 +40,6 @@ else {
     );
     } 
 }
-
-    $data = array(
-        "success" => "Äänestys tallennettu!"
-    ); 
-
     catch(PDOException $e) {
         $data = array(
             "error" => "Tapahtui Virhe!"

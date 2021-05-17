@@ -14,8 +14,9 @@ function getPollData(id) {
     console.log(id);
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
-        data = JSON.parse(this.responseText);
         console.log(data);
+        data = JSON.parse(this.responseText);
+
         showPoll(data);
     }
     ajax.open("GET", "backend/getPoll.php?id=" + id);
@@ -42,7 +43,7 @@ function showPoll(data) {
     });
 }
 
-function giveVote (e) {
+function giveVote(e) {
     console.log("e.target.dataset.optionid");
     let id = e.target.dataset.optionid;
     let ajax = new XMLHttpRequest();
