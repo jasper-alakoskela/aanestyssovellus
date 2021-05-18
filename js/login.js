@@ -34,7 +34,7 @@ function login(event) {
         const data = JSON.parse(this.responseText);
         console.log(data);
         if (data.hasOwnProperty("success")) {
-            window.location.href = "index.php?type=success&msg=Kirjautuminen onnistui";
+            window.location.href = "admin.php?type=success&msg=Kirjautuminen onnistui";
             return;
         } else {
             showMessage("error", "Kirjautuminen epäonnistui");

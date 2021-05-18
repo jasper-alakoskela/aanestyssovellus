@@ -1,10 +1,4 @@
-<?php session_start();
-if (!isset($_GET["id"])) {
-    header("Location: index.php");
-    die();
-}
-
-?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +92,6 @@ if (!isset($_GET["id"])) {
       </div>
 </div>
 
-<script src="js/index.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/jquery.min.js"></script>

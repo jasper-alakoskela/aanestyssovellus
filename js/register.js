@@ -46,10 +46,12 @@ function registerNewUser(event) {
     ajax.onload = function () {
         const data = JSON.parse(this.responseText);
         if (data.hasOwnProperty("success")) {
-            showMessage("success", data.success);
-        }
-        else {
-            showMessage("error", data.error);
+            window.location.href = "login.php?type=success&msg=Rekisteröinti onnistui";
+            return;
+        } else {
+            showMessage("error", "Rekisteröinti epäonnistui");
+            setErrorFor(nameInput);
+            setErrorFor(pwdInput);
         }
     }
     ajax.open("POST", "backend/registerNewUser.php", true);

@@ -55,8 +55,14 @@ $id = intval($_GET["id"]);
 
 <div class="container">
     <div class="jumbotron">
-        <h2></h2>
 
+    <div class="container">
+      <div id="msg" class="alert alert-dismissible alert-danger d-none">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0"></p>
+      </div>
+
+        <h2></h2>
         <ul id="optionsUl" class="list-group">
         <!--
             <li class="list-group-item d-flex justify-content-between align-items-center">
