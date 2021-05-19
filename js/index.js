@@ -2,22 +2,22 @@
 
 window.addEventListener("load", getPolls);
 
-let data = null;
-
 document.getElementById("currentVotes").addEventListener("click", openPoll);
 document.getElementById("oldVotes").addEventListener("click", openPoll);
 document.getElementById("futureVotes").addEventListener("click", openPoll);
 
+let data = null;
+
 // Ota tietokannasta äänestykset
 
 function getPolls() {
-    console.log("haetaan dataa")
+    console.log("haetaan dataa");
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
         data = JSON.parse(this.responseText);
-        showPolls();
+        showPolls(data);
     }
-    ajax.open("GET", "backend/getPolls.php?all_votes=true");
+    ajax.open("GET", "backend/getPolls.php?");
     ajax.send();
 }
 
