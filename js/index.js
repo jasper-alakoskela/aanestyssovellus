@@ -17,7 +17,7 @@ function getPolls() {
         data = JSON.parse(this.responseText);
         showPolls(data);
     }
-    ajax.open("GET", "backend/getPolls.php?");
+    ajax.open("GET", "backend/getPolls.php?all_polls=true");
     ajax.send();
 }
 

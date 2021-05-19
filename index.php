@@ -62,7 +62,7 @@
       <h2>Äänestykset</h2>
       <br>
       <div class="btn-group dropright">
-          <button onclick="showPolls('current')" class="btn btn-secondary btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button onclick="showPolls(data,'current')" class="btn btn-secondary btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Nykyiset
           </button>
           <div class="dropdown-menu">
@@ -72,7 +72,7 @@
       </div>
      <br><br>
       <div class="btn-group dropright">
-          <button onclick="showPolls('future')" class="btn btn-secondary btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button onclick="showPolls(data,'future')" class="btn btn-secondary btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Tulevat
           </button>
           <div class="dropdown-menu">
@@ -82,7 +82,7 @@
       </div>
       <br><br>
       <div class="btn-group dropright">
-          <button onclick="showPolls('old')" class="btn btn-secondary btn-danger btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button onclick="showPolls(data, 'old')" class="btn btn-secondary btn-danger btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Menneet
           </button>
           <div class="dropdown-menu">

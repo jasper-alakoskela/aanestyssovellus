@@ -2,18 +2,18 @@
 
 window.addEventListener("load", getUserPolls);
 
-let data = null;
-
 document.getElementById("currentVotes").addEventListener("click", openPoll);
 document.getElementById("oldVotes").addEventListener("click", openPoll);
 document.getElementById("futureVotes").addEventListener("click", openPoll);
+
+let data = null;
 
 function getUserPolls() {
     console.log("haetaan dataa")
     let ajax = new XMLHttpRequest();
     ajax.onload = function () {
         data = JSON.parse(this.responseText);
-        showPolls();
+        showPolls(data);
     }
     ajax.open("GET", "backend/getPolls.php");
     ajax.send();

@@ -2,7 +2,7 @@
 session_start();
 
 // äänestykset tietokannasta index-sivulle
-/*
+
 if (isset($_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
 }
@@ -11,24 +11,24 @@ else {
 }
 
 if (isset($_GET["all_votes"])) {
-    $all_votes = true;
+    $all_polls = true;
 }
 else {
-    $all_votes = false;
+    $all_polls = false;
 }
-*/
+
 include_once "db-connection.php";
 
 try {
     // pdo statement
 
-    //if ($all_votes == true or $user_id == false) {
+    if ($all_polls == true or $user_id == false) {
         $stmt = $conn->prepare("SELECT id, topic, start, end, user_id FROM poll");
-    //}
-    /*else {
+    }
+    else {
         $stmt = $conn->prepare("SELECT id, topic, start, end, user_id FROM poll WHERE user_id = :user_id");
         $stmt->bindParam(":user_id", $user_id);
-    }*/
+    }
 
     if($stmt->execute() == false) {
         $data = array(
