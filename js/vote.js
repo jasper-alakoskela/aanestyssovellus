@@ -23,7 +23,7 @@ function getPollData(id) {
 
 
 function showPoll(data) {
-    document.querySelector("h2").innerHTML = data[0].topic;
+    document.querySelector("h2").innerHTML = data.topic;
     const ul = document.getElementById("optionsUl");
 
     data["options"].forEach(option => {

@@ -54,13 +54,7 @@ function showPolls(data, type) {
         if (type == "current") {
             if ((start == false || start <= now) && (end == false || end >= now)) {
 
-                const newLi = document.createElement("li");
-                newLi.classList.add("list-group-item");
-                newLi.dataset.voteid = poll.id;
-
-                const liText = document.createTextNode(poll.topic);
-                newLi.appendChild(liText);
-
+                createPollList(poll.id, poll.topic);
                 currentVotes.appendChild(newLi);
             }
         }
@@ -69,13 +63,7 @@ function showPolls(data, type) {
         if (type == "old") {
             if (end < now && end != false) {
 
-                const newLi = document.createElement("li");
-                newLi.classList.add("list-group-item");
-                newLi.dataset.voteid = poll.id;
-
-                const liText = document.createTextNode(poll.topic);
-                newLi.appendChild(liText);
-
+                createPollList(poll.id, poll.topic);
                 oldVotes.appendChild(newLi);
             }
         }
@@ -84,18 +72,22 @@ function showPolls(data, type) {
         if (type == "future") {
             if (start > now && start != false) {
 
-                const newLi = document.createElement("li");
-                newLi.classList.add("list-group-item");
-                newLi.dataset.voteid = poll.id;
-
-                const liText = document.createTextNode(poll.topic);
-                newLi.appendChild(liText);
-
+                createPollList(poll.id, poll.topic);
                 futureVotes.appendChild(newLi);
             }
         }
 
     });
+}
+
+function createPollList(pollId, pollTopic) {
+    const newLi = document.createElement("li");
+    newLi.classList.add("list-group-item");
+    newLi.dataset.voteid = pollId;
+
+    const liText = document.createTextNode(pollTopic);
+    newLi.appendChild(liText);
+
 }
 
 function openPoll(e) {

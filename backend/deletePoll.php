@@ -1,16 +1,15 @@
 <?php
+
 if (!isset($_GET["id"])) {
-    header("Location: ../index.php");
-    die();
+    header("Location: ../admin.php");
 }
 
 $poll_id = $_GET["id"];
 
 include_once "db-connection.php";
 
-
 try {
-    $stmt = $conn -> prepare("SELECT id, topic, start, end, user_id FROM poll WHERE id = :poll_id");
+    $stmt = $conn -> prepare("DELETE FROM option WHERE poll_id = :poll_id;");
     $stmt->bindParam(":poll_id", $poll_id);
 
     if ($stmt->execute() == false) {
@@ -20,21 +19,12 @@ try {
     }
 
     else {
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $data = $result;
+        $data = array (
+            "success" => "vaihtoehto poisto onnistui"
+        );
     }
-}
 
-catch (PDOException $e) {
-    $data = array (
-        "error" => "Virhe"
-    );
-}
-
-// vaihtoehdot tietokannasta
-
-try {
-    $stmt = $conn -> prepare("SELECT id, name, votes FROM option WHERE poll_id = :poll_id");
+    $stmt = $conn -> prepare("DELETE FROM poll WHERE id = :poll_id;");
     $stmt->bindParam(":poll_id", $poll_id);
 
     if ($stmt->execute() == false) {
@@ -44,11 +34,12 @@ try {
     }
 
     else {
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $options = $result;
-        $data["options"] = $options;
+        $data = array (
+            "success" => "äänestys poisto onnistui"
+        );
     }
 }
+
 
 catch (PDOException $e) {
     $data = array (
