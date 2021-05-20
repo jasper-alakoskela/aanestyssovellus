@@ -4,7 +4,7 @@
 $dbserverName = "localhost";
 $dbuserName = "root";
 $dbpassWord = "";
-$dbname = "aanestssovellus";
+$dbname = "aanestyssovellus";
 
 try {
     $conn = new PDO("mysql:host=$dbserverName; dbname=$dbname", $dbuserName, $dbpassWord);
