@@ -12,6 +12,7 @@ let optionCount = 0;
 
 document.getElementById("addoption").addEventListener("click", newOption);
 document.getElementById("delbtn").addEventListener("click", deleteOption);
+document.forms["editPoll"].addEventListener("submit", saveEditPoll);
 
 // Äänestys data tietokannasta
 
@@ -28,6 +29,7 @@ function getPollData(id) {
 }
 
 function populatePollForm (data) {
+    document.forms["editPoll"]["id"].value = data.id;
     document.forms["editPoll"]["topic"].value = data.topic;
     document.forms["editPoll"]["start"].value = data.start.replace(" ", "T");
     document.forms["editPoll"]["end"].value = data.end.replace(" ", "T");
@@ -78,8 +80,16 @@ function createOption(count, name, id) {
     input.dataset.optionid = id;
     input.value = name;
 
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "btn btn-outline-danger";
+
+    const deleteBtnText = document.createTextNode("Poista Vaihtoehto");
+    deleteBtn.appendChild(deleteBtnText);
+    deleteBtn.dataset.action = "delete";
+
     div.appendChild(label);
     div.appendChild(input);
+    div.appendChild(deleteBtn);
 
     return div;
 }
@@ -156,8 +166,6 @@ function createNewPoll(e) {
     ajax.send(postData);
 }
 
-
-
 function deleteOption(e) {
 
     e.preventDefault();
@@ -217,3 +225,38 @@ function newOption(e) {
     document.querySelector("fieldset").appendChild(div);
 
 }
+
+function saveEditPoll (e) {
+    e.preventDefault();
+    
+    //Kerätään äänestyksen data
+    let pollData = {};
+    pollData.id = document.forms["editPoll"]["id"].value;
+    pollData.topic = document.forms["editPoll"]["topic"].value;
+    pollData.start = document.forms["editPoll"]["start"].value;
+    pollData.end = document.forms["editPoll"]["end"].value;
+
+    const options = [];
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(function(input){
+        if (input.name.indexOf("option") == 0) {
+            options.push({id: input.dataset.optionid, name: input.value})
+        }
+    })
+
+    pollData.options = options;
+    console.log(pollData);
+
+    // Lähetetään data backend kansioon
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function(){
+        let data = JSON.parse(this.responseText);
+        console.log(data);
+    }
+    ajax.open("POST", "backend/saveEditPoll.php", true);
+    ajax.setRequestHeader("Content-Type", "application/json");
+    ajax.send(JSON.stringify(pollData));
+
+}
+// Vaihtoehdon poisto ja tallennus
