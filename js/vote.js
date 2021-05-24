@@ -59,7 +59,11 @@ function giveVote(e) {
         if (data.hasOwnProperty("success")) {
             window.location.href = "index.php?type=success&msg=Kiitos äänestyksestä";
             return;
-        } else {
+        }
+        else if (data.hasOwnProperty("warning")) {
+            showMessage("warning", data.warning)
+        }
+        else {
             showMessage("error", "Kirjautuminen epäonnistui");
         }
     }

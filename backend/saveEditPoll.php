@@ -34,8 +34,9 @@ catch (PDOException $e) {
     $data["error"] = $e->getMessage();
 }
 
-try {
 //Päivitetään vaihtoehdot
+try {
+
     foreach ($pollData->options as $option) {
         if (isset($option->id)) {
             $stmt = $conn->prepare("UPDATE option SET name = :name WHERE id = :id;");
@@ -47,6 +48,25 @@ try {
             $stmt->bindParam(":name", $option->name);
             $stmt->bindParam(":poll_id", $pollData->id);
         }
+
+        if ($stmt->execute() == false) {
+            $data["error"] = "Muokkaus epäonnistui";
+        }
+        else{
+            $data["success"] = "Muokkaus onnistui";  
+        }
+    }
+}
+catch (PDOException $e) {
+    $data["error"] = $e->getMessage();
+}
+
+// Poista vaihtoehdot
+
+try {
+    foreach ($pollData->todelete as $option) {
+            $stmt = $conn->prepare("DELETE FROM option WHERE id = :id;");;
+            $stmt->bindParam(":id", $option->id);
 
         if ($stmt->execute() == false) {
             $data["error"] = "Muokkaus epäonnistui";
