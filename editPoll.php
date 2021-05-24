@@ -52,7 +52,7 @@ die;
 </nav>
 
 <div class="container">
-  <form name="newpoll">
+  <form name="editPoll">
     <fieldset>
       <legend>Muokkaa Äänestystä</legend>
       <br>
@@ -61,6 +61,7 @@ die;
         <p class="mb-0"></p>
       </div>
       <div class="form-group">
+        <input type="hidden" name="id">
         <label for="topic">Muokkaa Aihe</label>
         <input type="text" class="form-control" id="topic" name="topic" placeholder="Kirjoita Aihe">
         <small></small>

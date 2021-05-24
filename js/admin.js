@@ -8,6 +8,8 @@ document.getElementById("futureVotes").addEventListener("click", openPoll);
 
 let data = null;
 
+// Ota tietokannasta äänestykset
+
 function getUserPolls() {
     console.log("haetaan dataa")
     let ajax = new XMLHttpRequest();

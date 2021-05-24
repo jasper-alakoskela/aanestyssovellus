@@ -54,17 +54,8 @@ function showPolls(data, type) {
         if (type == "current") {
             if ((start == false || start <= now) && (end == false || end >= now)) {
 
-                createPollList(poll.id, poll.topic);
-                currentVotes.appendChild(newLi);
-            }
-        }
-
-        //Vanhat äänestykset
-        if (type == "old") {
-            if (end < now && end != false) {
-
-                createPollList(poll.id, poll.topic);
-                oldVotes.appendChild(newLi);
+                createPollList(currentVotes, poll.id, poll.topic);
+                
             }
         }
 
@@ -72,15 +63,23 @@ function showPolls(data, type) {
         if (type == "future") {
             if (start > now && start != false) {
 
-                createPollList(poll.id, poll.topic);
-                futureVotes.appendChild(newLi);
+                createPollList(futureVotes, poll.id, poll.topic);
+                
             }
         }
 
+        //Vanhat äänestykset
+        if (type == "old") {
+            if (end < now && end != false) {
+
+                createPollList(oldVotes, poll.id, poll.topic);
+                
+            }
+        }
     });
 }
 
-function createPollList(pollId, pollTopic) {
+function createPollList(targetUl, pollId, pollTopic) {
     const newLi = document.createElement("li");
     newLi.classList.add("list-group-item");
     newLi.dataset.voteid = pollId;
@@ -88,6 +87,7 @@ function createPollList(pollId, pollTopic) {
     const liText = document.createTextNode(pollTopic);
     newLi.appendChild(liText);
 
+    targetUl.appendChild(newLi);
 }
 
 function openPoll(e) {
