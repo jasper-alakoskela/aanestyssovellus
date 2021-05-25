@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Äänestyssovellus</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
     
@@ -18,7 +19,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.php">Koti</a>
       </li>
       <li class="nav-item">
@@ -40,6 +41,15 @@
       <?php else:?>
         <li class="nav-item ">
         <a class="nav-link disabled" href="">Luo äänestys</a>
+      </li>
+      <?php endif;?>
+      <?php if (isset($_SESSION["logged_in"])):?>
+      <li class="nav-item active">
+        <a class="nav-link" href="admin.php">Muokkaa</a>
+      </li>
+      <?php else:?>
+        <li class="nav-item ">
+        <a class="nav-link disabled" href="">Muokkaa</a>
       </li>
       <?php endif;?>
     </ul>
@@ -66,7 +76,7 @@
             Nykyiset
           </button>
           <div class="dropdown-menu">
-            <ul id="currentVotes">
+            <ul id="currentVotes" class="ulvotes">
             </ul>
           </div>
       </div>
@@ -76,7 +86,7 @@
             Tulevat
           </button>
           <div class="dropdown-menu">
-            <ul id="futureVotes">
+            <ul id="futureVotes" class="ulvotes">
             </ul>
           </div>
       </div>
@@ -86,7 +96,7 @@
             Menneet
           </button>
           <div class="dropdown-menu">
-            <ul id="oldVotes">
+            <ul id="oldVotes" class="ulvotes">
             </ul>
           </div>
       </div>

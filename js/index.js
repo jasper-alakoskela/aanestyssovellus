@@ -3,8 +3,8 @@
 window.addEventListener("load", getPolls);
 
 document.getElementById("currentVotes").addEventListener("click", openPoll);
-document.getElementById("oldVotes").addEventListener("click", openPoll);
-document.getElementById("futureVotes").addEventListener("click", openPoll);
+document.getElementById("oldVotes").addEventListener("click", openResults);
+document.getElementById("futureVotes").addEventListener("click", openResults);
 
 let data = null;
 
@@ -55,7 +55,7 @@ function showPolls(data, type) {
             if ((start == false || start <= now) && (end == false || end >= now)) {
 
                 createPollList(currentVotes, poll.id, poll.topic);
-                
+
             }
         }
 
@@ -64,7 +64,7 @@ function showPolls(data, type) {
             if (start > now && start != false) {
 
                 createPollList(futureVotes, poll.id, poll.topic);
-                
+
             }
         }
 
@@ -73,7 +73,7 @@ function showPolls(data, type) {
             if (end < now && end != false) {
 
                 createPollList(oldVotes, poll.id, poll.topic);
-                
+
             }
         }
     });
@@ -92,5 +92,16 @@ function createPollList(targetUl, pollId, pollTopic) {
 
 function openPoll(e) {
     console.log(e.target.dataset.voteid);
-    window.location.href = "vote.php?id=" + e.target.dataset.voteid;
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function () {
+        data = JSON.parse(this.responseText);
+        showPolls(data);
+    }
+    ajax.open("GET", "backend/checklogin.php");
+    ajax.send();
+}
+
+function openResults(e) {
+    console.log(e.target.dataset.voteid);
+    window.location.href = "results.php?id=" + e.target.dataset.voteid;
 }

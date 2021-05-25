@@ -45,6 +45,15 @@
         <a class="nav-link disabled" href="">Luo äänestys</a>
       </li>
       <?php endif;?>
+      <?php if (isset($_SESSION["logged_in"])):?>
+      <li class="nav-item">
+        <a class="nav-link" href="admin.php">Muokkaa</a>
+      </li>
+      <?php else:?>
+        <li class="nav-item ">
+        <a class="nav-link disabled" href="">Muokkaa</a>
+      </li>
+      <?php endif;?>
     </ul>
   </div>
 </nav>

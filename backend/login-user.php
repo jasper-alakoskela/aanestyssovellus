@@ -21,7 +21,7 @@ try {
 
     if($stmt->execute() == false) {
         $data = array(
-            "error" => "Tallennus epäonnistu!"
+            "error" => "Kirjautuminen epäonnistu!"
         );
     } else {
         //Käyttäjä löytyi
@@ -33,6 +33,7 @@ try {
             $_SESSION["logged_in"] = true;
             $_SESSION["user_id"] = $result["id"];
             $_SESSION["username"] = $result["username"];
+            
         }
         else {
             $data = array(
