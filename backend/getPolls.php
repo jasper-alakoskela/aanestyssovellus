@@ -10,7 +10,7 @@ else {
     $user_id = false;
 }
 
-if (isset($_GET["all_votes"])) {
+if (isset($_GET["all_polls"])) {
     $all_polls = true;
 }
 else {

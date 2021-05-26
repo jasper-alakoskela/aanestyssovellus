@@ -64,7 +64,7 @@ function giveVote(e) {
             showMessage("warning", data.warning)
         }
         else {
-            showMessage("error", "Kirjautuminen epäonnistui");
+            showMessage("error", "äänestys epäonnistui");
         }
     }
     ajax.open("GET", "backend/giveVote.php?id=" + id);

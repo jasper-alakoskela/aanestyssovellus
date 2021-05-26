@@ -92,14 +92,8 @@ function createPollList(targetUl, pollId, pollTopic) {
 
 function openPoll(e) {
     console.log(e.target.dataset.voteid);
-    let ajax = new XMLHttpRequest();
-    ajax.onload = function () {
-        data = JSON.parse(this.responseText);
-        showPolls(data);
-    }
-    ajax.open("GET", "backend/checklogin.php");
-    ajax.send();
-}
+    window.location.href = "backend/checkCookies.php?id=" + e.target.dataset.voteid;
+} 
 
 function openResults(e) {
     console.log(e.target.dataset.voteid);

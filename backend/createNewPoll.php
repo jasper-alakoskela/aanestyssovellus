@@ -70,8 +70,9 @@ else {
             }
             else {
                 $data = array(
-                    "success" => "Uusi äänestys luotu!"
+                    "success" => "Uusi äänestys luotu!" 
                 );
+                $_SESSION["poll_id"] = $poll_id;
             }
         }
     }
