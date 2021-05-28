@@ -92,8 +92,8 @@ function createPollList(targetUl, pollId, pollTopic) {
 
 function openPoll(e) {
     console.log(e.target.dataset.voteid);
-    window.location.href = "backend/checkCookies.php?id=" + e.target.dataset.voteid;
-} 
+    window.location.href = "backend/checkLogIn.php?id=" + e.target.dataset.voteid;
+}
 
 function openResults(e) {
     console.log(e.target.dataset.voteid);

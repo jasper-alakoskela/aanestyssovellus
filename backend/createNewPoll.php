@@ -55,7 +55,7 @@ else {
 }
 
     $poll_id = $conn->lastInsertId();
-
+    $_SESSION["poll_id"] = $poll_id;
     try {
         foreach($options as $option) {
             // pdo statement

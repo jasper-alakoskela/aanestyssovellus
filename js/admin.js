@@ -131,7 +131,7 @@ function openPoll(e) {
         return;
     }
 
-    window.location.href = "vote.php?id=" + e.target.dataset.voteid;
+    window.location.href = "results.php?id=" + e.target.dataset.voteid;
 }
 
 function deletePoll(id) {

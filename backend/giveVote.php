@@ -8,6 +8,13 @@ if (!isset($_SESSION["user_id"])) {
     die();
 }
 
+if (!isset($_SESSION["poll_id"])) {
+    $data = array(
+        "error" => "Pääsy kielletty!"
+    );
+    die();
+}
+
 if (!isset($_GET["id"])) {
     header("Location: ../index.php");
 }
@@ -36,11 +43,21 @@ try {
         $start_timestamp = strtotime($poll["start"]);
         $end_timestamp = strtotime($poll["end"]);
 
-        /*if () {
+        $stmt = $conn->prepare("SELECT * FROM votes WHERE user_id = :user_id AND poll_id = :poll_id;");
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->bindParam(":poll_id", $poll_id);
+
+        if ($stmt->execute() == false) {
+            $data["error"] = "virhe";
+        }
+
+        $votes = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        if (count($votes) > 0) {
             $data["warning"] = "Olet jo äänestänyt!";
-        }*/
+        }
         
-        if ($end_timestamp == $start_timestamp) {
+        else if ($end_timestamp == $start_timestamp) {
             $data["success"] = "Aikaa ei määritelty";
         }
         else if ($end_timestamp < $current_timestamp) {
@@ -61,6 +78,7 @@ try {
     
         else {
             $data["success"] = "Äänestys onnistui";
+            
             $stmt = $conn->prepare("INSERT INTO votes (user_id, poll_id) VALUES (:user_id, :poll_id);");
             $stmt->bindParam(":user_id", $user_id);
             $stmt->bindParam(":poll_id", $poll_id);
@@ -72,7 +90,7 @@ try {
             }
             else {
                 $data = array(
-                    "success" => "käyttäjän äänestykset succes!"
+                    "success" => "käyttäjän äänestykset success!"
                 );
             } 
         }
@@ -82,7 +100,7 @@ try {
 
 catch (PDOException $e) {
     $data = array (
-        "error" => "Virhe"
+        "error" => "pdo Virhe"
     );
 }
 
