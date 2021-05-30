@@ -36,10 +36,16 @@ function login(event) {
         if (data.hasOwnProperty("success")) {
             window.location.href = "admin.php?type=success&msg=Kirjautuminen onnistui";
             return;
-        } else {
+        }
+        else if (data.hasOwnProperty("error")) {
             showMessage("error", "Kirjautuminen epäonnistui");
-            setErrorFor(nameInput);
-            setErrorFor(pwdInput);
+            setErrorFor(nameInput, "");
+            setErrorFor(pwdInput, "");
+        }
+        else {
+            showMessage("error", "Kirjautuminen epäonnistui");
+            setErrorFor(nameInput, "");
+            setErrorFor(pwdInput, "");
         }
     }
 
