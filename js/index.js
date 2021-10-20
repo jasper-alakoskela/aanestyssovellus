@@ -78,21 +78,43 @@ function showPolls(data, type) {
         }
     });
 }
+// Funktio joka luo listan
 
 function createPollList(targetUl, pollId, pollTopic) {
     const newLi = document.createElement("li");
     newLi.classList.add("list-group-item");
     newLi.dataset.voteid = pollId;
 
+    //äänestysnappi
+    const newVoteBtn = document.createElement("button");
+    newVoteBtn.dataset.action = "vote";
+    const voteBtnText = document.createTextNode("Äänestä");
+    newVoteBtn.classList.add("btn");
+    newVoteBtn.classList.add("btn-outline-info");
+    newVoteBtn.classList.add("btn-sm");
+    newVoteBtn.appendChild(voteBtnText);
+
     const liText = document.createTextNode(pollTopic);
     newLi.appendChild(liText);
+
+    newLi.appendChild(newVoteBtn);
 
     targetUl.appendChild(newLi);
 }
 
 function openPoll(e) {
     console.log(e.target.dataset.voteid);
-    window.location.href = "backend/checkLogIn.php?id=" + e.target.dataset.voteid;
+    const action = e.target.dataset.action;
+
+    if (action == "vote") {
+        console.log(e.target.parentElement.dataset.voteid);
+        window.location.href = "vote.php?id=" + e.target.parentElement.dataset.voteid;
+        //let pollId = e.target.parentElement.dataset.voteid;
+        //editPoll(pollId)
+        return;
+    }
+
+    window.location.href = "results.php?id=" + e.target.dataset.voteid;
 }
 
 function openResults(e) {

@@ -61,7 +61,7 @@ function giveVote(e) {
             return;
         }
         else if (data.hasOwnProperty("warning")) {
-            showMessage("warning", data.warning)
+            showMessage("warning", data.warning);
         }
         else {
             showMessage("error", "äänestys epäonnistui");

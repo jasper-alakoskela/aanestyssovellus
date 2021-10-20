@@ -55,7 +55,7 @@ else {
 }
 
     $poll_id = $conn->lastInsertId();
-    $_SESSION["poll_id"] = $poll_id;
+    //$_SESSION["poll_id"] = $poll_id;
     try {
         foreach($options as $option) {
             // pdo statement
@@ -72,7 +72,7 @@ else {
                 $data = array(
                     "success" => "Uusi äänestys luotu!" 
                 );
-                $_SESSION["poll_id"] = $poll_id;
+                //$_SESSION["poll_id"] = $poll_id;
             }
         }
     }
