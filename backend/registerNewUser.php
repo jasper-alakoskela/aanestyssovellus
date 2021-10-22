@@ -30,7 +30,7 @@ else {
 }
 
 catch(PDOException $e) {
-    if (strpos($e->getMessage(), "1062 Duplicate entry")) {
+    if (strpos($e->getMessage(), "1062 Duplicate entry")) { 
         $data = array(
             "error" => "Käyttäjänimi on jo olemassa!"
         );
@@ -43,5 +43,5 @@ catch(PDOException $e) {
     }
 }
 
-header("Content-type: application/json;charset=utf8");
+header("Content-type: application/json;charset=utf-8");
 echo json_encode($data);

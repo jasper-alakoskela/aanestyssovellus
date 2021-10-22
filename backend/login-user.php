@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Tarkistukset ensin
 if (!isset($_POST["username"]) or !isset($_POST["password"])) {
@@ -21,24 +20,34 @@ try {
 
     if($stmt->execute() == false) {
         $data = array(
-            "error" => "Kirjautuminen epäonnistu!"
+            "error" => "Kirjautuminen epäonnistui!"
         );
-    } else {
-        //Käyttäjä löytyi
+    } 
+    else {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (password_verify($password, $result["pwd"])) {
+
+        if($result == false) {
             $data = array(
-                "success" => "Kirjautuminen onnistui!"
-            );  
-            $_SESSION["logged_in"] = true;
-            $_SESSION["user_id"] = $result["id"];
-            $_SESSION["username"] = $result["username"];
-            
+                "error" => "Käyttäjänimi on väärä!"
+            );
         }
         else {
-            $data = array(
-                "error" => "Salasana on väärä"
-            );
+            //Käyttäjä löytyi
+       
+            if (password_verify($password, $result["pwd"])) {
+                $data = array(
+                    "success" => "Kirjautuminen onnistui!"
+                );  
+                $_SESSION["logged_in"] = true;
+                $_SESSION["user_id"] = $result["id"];
+                $_SESSION["username"] = $result["username"];
+                
+            }
+            else {
+                $data = array(
+                    "error" => "Salasana on väärä!"
+                );
+            } 
         } 
     } 
 } catch (PDOException $e) {
@@ -47,5 +56,5 @@ try {
     );
 }
 
-header("Content-type: application/json;charset=utf8");
+header("Content-type: application/json;charset=utf-8");
 echo json_encode($data);

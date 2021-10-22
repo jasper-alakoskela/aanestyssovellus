@@ -36,6 +36,15 @@ function showMessage(type, msg) {
     msgBox.classList.remove("d-none");
 }
 
+// toinen viestilaatikko funktio
+
+function showRawMessage(msg) {
+
+    let msgBox = document.getElementById("msg");
+    msgBox.querySelector("p").innerHTML = msg;
+    msgBox.classList.remove("d-none");
+}
+
 //login sivun toiminnallisuus
 
 const queryString = window.location.search;

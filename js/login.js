@@ -38,22 +38,18 @@ function login(event) {
             return;
         }
         else if (data.hasOwnProperty("error")) {
-            showMessage("error", "Kirjautuminen epäonnistui");
+            showRawMessage(data.error);
             setErrorFor(nameInput, "");
             setErrorFor(pwdInput, "");
         }
         else {
-            showMessage("error", "Kirjautuminen epäonnistui");
+            showRawMessage(data.error);
             setErrorFor(nameInput, "");
             setErrorFor(pwdInput, "");
+
         }
     }
-
-
     ajax.open("POST", "backend/login-user.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajax.send(`username=${username}&password=${password}`);
-
-
 }
-

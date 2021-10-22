@@ -39,7 +39,6 @@ function registerNewUser(event) {
 
     else {
         setSuccessFor(pwd2Input);
-
     }
 
     let ajax = new XMLHttpRequest();
@@ -49,9 +48,10 @@ function registerNewUser(event) {
             window.location.href = "login.php?type=success&msg=Rekisteröinti onnistui";
             return;
         } else {
-            showMessage("error", "Rekisteröinti epäonnistui");
-            setErrorFor(nameInput);
-            setErrorFor(pwdInput);
+            showRawMessage(data.error);
+            setErrorFor(nameInput, "");
+            setErrorFor(pwdInput, "");
+            setErrorFor(pwd2Input, "");
         }
     }
     ajax.open("POST", "backend/registerNewUser.php", true);
