@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Tarkistukset ensin
 if (!isset($_POST["username"]) or !isset($_POST["password"])) {
     $data = array(
